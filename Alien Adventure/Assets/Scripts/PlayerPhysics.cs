@@ -14,6 +14,8 @@ public class PlayerPhysics : MonoBehaviour {
 
 	[HideInInspector]
 	public bool grounded;
+	[HideInInspector]
+	public bool moveStop;
 
 	Ray ray;
 	RaycastHit hit;
@@ -30,6 +32,10 @@ public class PlayerPhysics : MonoBehaviour {
 		float deltaX = moveAmount.x;
 		Vector2 p = transform.position;
 
+
+		//Check collisions above
+		grounded = false;
+
 		for (int i = 0; i < 3; i++) {
 			float dir = Mathf.Sign(deltaY);
 			float x = (p.x + c.x -s.x/2) + s.x/2 * i;
@@ -37,16 +43,40 @@ public class PlayerPhysics : MonoBehaviour {
 
 			ray = new Ray(new Vector2(x,y), new Vector2(0,dir));
 
-			if (Physics.Raycast (ray,out hit,Mathf.Abs(deltaY), collisionMask)){
+			if (Physics.Raycast (ray,out hit,Mathf.Abs(deltaY) + skin, collisionMask)){
 				float dst = Vector3.Distance (ray.origin, hit.point);
 
 				if (dst > skin){
-					deltaY = -dst + skin;
+					deltaY = -dst - skin * dir;
 				}
 				else {
 					deltaY = 0;
 				}
 				grounded = true;
+				break;
+			}
+		}
+
+		//Check left and right
+		moveStop = false;
+		for (int i = 0; i < 3; i++) {
+			float dir = Mathf.Sign(deltaX);
+			float x = p.x + c.x + s.x/2 * dir;
+			float y = p.y + c.y - s.y/2 + s.y/2 * i;
+			
+			ray = new Ray(new Vector2(x,y), new Vector2(dir,0));
+			Debug.DrawRay (ray.origin, ray.direction);
+			
+			if (Physics.Raycast (ray,out hit,Mathf.Abs(deltaX) + skin, collisionMask)){
+				float dst = Vector3.Distance (ray.origin, hit.point);
+				
+				if (dst > skin){
+					deltaX = -dst - skin * dir;
+				}
+				else {
+					deltaX = 0;
+				}
+				moveStop = true;
 				break;
 			}
 		}
