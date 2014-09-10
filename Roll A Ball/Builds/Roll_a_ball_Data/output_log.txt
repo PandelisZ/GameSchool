@@ -1,0 +1,17 @@
+Initialize engine version: 4.5.2f1 (9abb1b59b47c)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: AMD Radeon HD 6800 Series (ID=0x6738)
+    Vendor:   ATI
+    VRAM:     1009 MB
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Users\Droid\Documents\Workspace\Roller Ball\Builds\Roll_a_ball_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\Droid\Documents\Workspace\Roller Ball\Builds\Roll_a_ball_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\Droid\Documents\Workspace\Roller Ball\Builds\Roll_a_ball_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\Droid\Documents\Workspace\Roller Ball\Builds\Roll_a_ball_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+- Completed reload, in  0.043 seconds
+desktop: 1920x1080 60Hz; virtual: 3200x1080 at 0,0
+<RI> Initializing input.
+XInput1_3.dll not found.
+<RI> Input initialized.
